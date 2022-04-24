@@ -1,0 +1,13 @@
+.titulo{
+    color: #1d1d1d;
+    font-weight: 600;
+    text-align: center;
+    font-size: 24px;
+    padding: 8px;
+}
+.sub-titulo{
+    font-weight: 600;
+    font-size: 18px;
+    padding-bottom: 28px;
+    text-align: center;
+}
