@@ -6,12 +6,14 @@ import trashfalse from "../../imagenes/trashfalse.png";
 import trashtrue from "../../imagenes/trashtrue.png";
 
 function TodoItem(props) {
+
   return (
     <li className={`TodoItem ${props.completed && "TodoItem-active"}`}>
       <img
         className="Icon"
         src={!props.completed ? checkfalse : checktrue}
-        alt="icono"
+        alt="icono-Completar"
+        onClick={props.onComplete}
       />
       <div className="textToDo">
         <p
@@ -22,7 +24,8 @@ function TodoItem(props) {
         <img
           className="Icon Icon-delete"
           src={!props.completed ? trashfalse : trashtrue}
-          alt="icono"
+          alt="icono-Borrar"
+          onClick={props.onDelete}
         />
       </div>
     </li>
