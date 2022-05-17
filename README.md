@@ -21,4 +21,4 @@ The objectives of this application are:
 * This project was created to be viewed on mobile or tablet, it is not made to be executed on PC
 
 ## See the page
-[Click here to see the page] (https://todolistdaniela.netlify.app)
+[Click here to see the page](https://todolistdaniela.netlify.app)
