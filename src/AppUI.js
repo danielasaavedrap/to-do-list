@@ -1,32 +1,39 @@
 import React from "react";
-import { TodoCounter } from "./componentes/Counter/todoCounter";
+import { TodoContext } from "./TodoContext/index.js";
+import { TodoCounter } from "./componentes/Counter/todoCounter.js";
 import { TodoSearch } from "./componentes/Search/todoSearch.js";
 import { TodoList } from "./componentes/list/todoList.js";
 import { TodoItem } from "./componentes/items/todoItem.js";
-import { CreateTodoButtom } from "./componentes/button/todoButton.js";
+import { CreateTodoButton } from "./componentes/button/todoButton.js";
+import { Modal } from "./componentes/modal/modal.js";
+import { TodoForm } from "./componentes/TodoForm/TodoForm";
+import errorr from "./imagenes/robot error.png";
+import esperandoo from "./imagenes/robot esperar.png";
+import agrega from "./imagenes/robot buscar.png";
+import "./AppUI.css";
 
-function AppUI({
-  error,
-  loading,
-  totalToDo,
-  completedToDo,
-  searchValue,
-  setSearchValue,
-  searchedToDo,
-  completeTodo,
-  deleteTodo,
-}) {
+function AppUI() {
+  const {
+    error,
+    loading,
+    searchedTodos,
+    completeTodo,
+    deleteTodo,
+    openModal,
+    setOpenModal,
+  } = React.useContext(TodoContext);
+
   return (
     <React.Fragment>
-      <TodoCounter total={totalToDo} completed={completedToDo} />
-      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+      <TodoCounter />
+      <TodoSearch />
+
       <TodoList>
-      {error && <p>Ups! hay un error</p>}
-      {loading && <p>¡Estamos cargando la pagina!</p>}
-      {(!loading && !searchedToDo.length) && <p>¡Crea tu primer To Do!</p>}
+        {error && <img src={errorr} alt="error" className="imagenRobot" />        }
+        {loading && <img src={esperandoo} alt="cargando" width={400}  className="imagenRobot"/>  }
+        {!loading && !searchedTodos.length && <img src={agrega} alt="agregar" className="imagenRobot" />  }
 
-
-        {searchedToDo.map((todo) => (
+        {searchedTodos.map((todo) => (
           <TodoItem
             key={todo.text}
             text={todo.text}
@@ -36,7 +43,16 @@ function AppUI({
           />
         ))}
       </TodoList>
-      <CreateTodoButtom />
+
+      {openModal &&
+        (<Modal>
+          <TodoForm />
+        </Modal>)
+      }
+      <CreateTodoButton 
+        setOpenModal = {setOpenModal}
+        openModal = {openModal}
+      />
     </React.Fragment>
   );
 }

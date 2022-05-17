@@ -1,19 +1,19 @@
 import React from "react";
 import "./todoButton.css";
 
-function CreateTodoButtom(props){
-const onClickButton = (mensaje) => {
-    alert(mensaje);
+function CreateTodoButton(props){
+const onClickButton = () => {
+    props.setOpenModal(!props.openModal);
 }
 
     return(
         <button 
         className="CreateTodoButton"
-        onClick={() => onClickButton("aqui va el nodal")}
+        onClick={() => onClickButton()}
         >
         +
         </button>
     );
 }
 
-export { CreateTodoButtom};
+export { CreateTodoButton};
